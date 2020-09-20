@@ -18,10 +18,10 @@ public class CondicaoUsuario {
 	private Date data;
 /** Construtor de Classes
  * Classe CondicaoUsuario
- * @param Id da Condição do Usuario
+ * @param Id da CondiÃ§Ã£o do Usuario
  */	
-	CondicaoUsuario(int id, Usuario usuario) {
-		this.id = id;
+	public CondicaoUsuario(Date data, Usuario usuario) {
+		this.data = data;
 		this.usuario = usuario;
 	}
 	

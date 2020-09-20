@@ -1,5 +1,6 @@
 package br.fiap.com.healthtrack;
 
+import java.util.Date;
 import java.util.Scanner;
 /**
  * Calculo do IMC
@@ -24,7 +25,7 @@ public class Main {
 		
 		Usuario usuario = new Usuario(1,nome);
 		
-		CondicaoUsuario condicao = new CondicaoUsuario(1, usuario);
+		CondicaoUsuario condicao = new CondicaoUsuario(new Date(), usuario);
 		condicao.setAltura(altura);
 		condicao.setPeso(peso);
 /* Imprime o Resultado IMC em valor
@@ -32,7 +33,7 @@ public class Main {
  */
 		System.out.println("Resultado IMC = " + condicao.getIMC());
 /*
- * Imprime a condição resultadoIMC
+ * Imprime a condiÃ§Ã£o resultadoIMC
  * 
  */
 		System.out.println(condicao.resultadoIMC());

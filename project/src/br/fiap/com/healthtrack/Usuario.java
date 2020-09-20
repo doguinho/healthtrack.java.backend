@@ -6,12 +6,12 @@ package br.fiap.com.healthtrack;
  */
 public class Usuario extends PreferenciaUsuario {
 /*
- * Usuario(subclasse) é uma classe derivada da classe PreferenciaUsuario(superclasse)
+ * Usuario(subclasse) ï¿½ uma classe derivada da classe PreferenciaUsuario(superclasse)
  */
 	private int id;
 	private String nome;
 	
-	Usuario(int id, String nome){
+	public Usuario(int id, String nome){
 		this.id = id;
 		this.nome = nome;
 	}
