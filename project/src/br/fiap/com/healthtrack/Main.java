@@ -23,9 +23,10 @@ public class Main {
 		System.out.print("Insira sua altura(m) Ex: 1,67 = ");
 		double altura = sc.nextDouble();
 		
-		Usuario usuario = new Usuario(1,nome);
+		Usuario usuario = new Usuario(1);
+		usuario.setNomeUsuario(nome);
 		
-		CondicaoUsuario condicao = new CondicaoUsuario(new Date(), usuario);
+		CondicaoUsuario condicao = new CondicaoUsuario(new Date(), usuario.getId());
 		condicao.setAltura(altura);
 		condicao.setPeso(peso);
 /* Imprime o Resultado IMC em valor

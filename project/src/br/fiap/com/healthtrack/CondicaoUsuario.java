@@ -6,7 +6,7 @@ import java.util.Date;
  * @author Grupo 8
  * @version 1.0
  */
-public class CondicaoUsuario {
+public class CondicaoUsuario extends Usuario {
 /*
  *  Atributos da Classe	
  */	
@@ -20,9 +20,10 @@ public class CondicaoUsuario {
  * Classe CondicaoUsuario
  * @param Id da Condição do Usuario
  */	
-	public CondicaoUsuario(Date data, Usuario usuario) {
+	public CondicaoUsuario(Date data, int idUsuario) {
+		super(idUsuario);
 		this.data = data;
-		this.usuario = usuario;
+//		this.usuario = usuario;
 	}
 	
 	public Usuario getUsuario() {

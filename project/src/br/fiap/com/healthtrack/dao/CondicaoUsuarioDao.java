@@ -20,7 +20,9 @@ public class CondicaoUsuarioDao {
 	
 	public List<CondicaoUsuario> getAll() {
 		
-		Usuario u = new Usuario(1,"João Almeida");
+		Usuario usuario = new Usuario(1);
+		usuario.setNome("João Gabriel");
+		int u = usuario.getId();
 		
 		//dia 1
 		
