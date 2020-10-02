@@ -9,7 +9,7 @@ public abstract class PreferenciaUsuario {
  *  Atributos da Classe	
  */
 	/*
-	 * PreferenciaUsuario(superclasse) vai passar sus atributos ecomportamento a classe Usuario(subclasse)
+	 * PreferenciaUsuario(superclasse) vai passar seus atributos ecomportamento a classe Usuario(subclasse)
 	 */
 	private boolean vegetariano;
 	private boolean vegano;
@@ -18,7 +18,7 @@ public abstract class PreferenciaUsuario {
 	private Objetivo objetivo;
 /**
  * 	
- * @return se o usuario È vegetariano
+ * @return se o usuario √© vegetariano
  */
 	public boolean isVegetariano() {
 		return vegetariano;
@@ -28,7 +28,7 @@ public abstract class PreferenciaUsuario {
 	}
 /**
  * 
- * @return se o usuario È vegano
+ * @return se o usuario √© vegano
  */
 	public boolean isVegano() {
 		return vegano;
@@ -38,7 +38,7 @@ public abstract class PreferenciaUsuario {
 	}
 /**
  * 
- * @return se o usuario tem complicaÁ„o cardiacas
+ * @return se o usuario tem complica√ß√µes card√≠acas
  */
 	public boolean isCardiaco() {
 		return cardiaco;

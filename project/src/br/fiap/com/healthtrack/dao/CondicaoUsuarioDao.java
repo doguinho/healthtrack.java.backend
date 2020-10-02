@@ -20,6 +20,10 @@ public class CondicaoUsuarioDao {
 	
 	public List<CondicaoUsuario> getAll() {
 		
+		/**
+		 * retorna histórico das condições do usuário
+		 * */
+		
 		Usuario usuario = new UsuarioDao().getById(1);
 		int u = usuario.getId();
 		
