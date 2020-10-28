@@ -26,7 +26,8 @@ public class Teste {
 		
 		listaPesos(usuario);		
 		listaAtividades();
-				
+		atualizarAtividade();
+		apagarAtividade();				
 		
 	}
 	
@@ -64,6 +65,23 @@ public class Teste {
 			System.out.println(atividades.get(i).getNome());
 		}
 		
+		
+	}
+	
+	public static void apagarAtividade() {
+		
+		AtividadeDao atividadeDao = new AtividadeDao();		
+		List<Atividade> atividades = atividadeDao.getAll();
+		atividadeDao.apagar(atividades.get(0).getId());
+				
+	}
+	
+	public static void atualizarAtividade() {
+		
+		AtividadeDao atividadeDao = new AtividadeDao();		
+		List<Atividade> atividades = atividadeDao.getAll();
+		atividades.get(0).setNome("Crossfit");		
+		atividadeDao.atualizar(atividades.get(0));		
 		
 	}
 

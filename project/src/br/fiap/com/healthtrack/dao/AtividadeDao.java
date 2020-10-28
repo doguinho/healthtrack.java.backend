@@ -14,8 +14,9 @@ public class AtividadeDao {
 
 	private Connection conexao = null;
 	private PreparedStatement stmt = null;
-	
-	public AtividadeDao() {}
+
+	public AtividadeDao() {
+	}
 
 	public void cadastrar(Atividade a) {
 
@@ -28,7 +29,7 @@ public class AtividadeDao {
 			stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, a.getNome());
 			stmt.setDouble(2, a.getCaloriasPorMinuto());
-			
+
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -42,6 +43,40 @@ public class AtividadeDao {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public Atividade getById(int id) {
+
+		Atividade a = null;
+
+		try {
+			conexao = FiapDBManager.obterConexao();
+
+			String sql = " SELECT * FROM RM85401.T_ATIVIDADES WHERE ID_ATIVIDADE = ? ";
+			stmt = conexao.prepareStatement(sql);
+
+			ResultSet result = stmt.executeQuery(sql);
+
+			while (result.next()) {
+				String nome = result.getString("NM_ATIVIDADE");
+				double caloriasPorMinuto = result.getDouble("CALORIAS_POR_MINUTO");
+				a = new Atividade(id, nome);
+				a.setCaloriasPorMinuto(caloriasPorMinuto);
+			}
+		} catch (SQLException e) {
+			System.err.println("Não foi possível conectar no Banco de Dados");
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return a;
+
 	}
 
 	public List<Atividade> getAll() {
@@ -84,6 +119,60 @@ public class AtividadeDao {
 
 		return atividades;
 
+	}
+	
+	public void atualizar(Atividade a) {
+		
+		try {
+			
+			conexao = FiapDBManager.obterConexao();
+			
+			String sql = " UPDATE RM85401.T_ATIVIDADES SET NM_ATIVIDADE = ?, CALORIAS_POR_MINUTO = ? WHERE ID_ATIVIDADE = ? ";
+			stmt = conexao.prepareStatement(sql);
+			
+			stmt.setString(1, a.getNome());
+			stmt.setDouble(2, a.getCaloriasPorMinuto());
+			stmt.setInt(3, a.getId());
+			
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.err.println("Não foi possível conectar no Banco de Dados");
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public void apagar(int id) {
+		
+		try {
+			
+			conexao = FiapDBManager.obterConexao();
+			
+			String sql = " DELETE FROM RM85401.T_ATIVIDADES WHERE ID_ATIVIDADE = ? ";
+			stmt = conexao.prepareStatement(sql);			
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.err.println("Não foi possível conectar no Banco de Dados");
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		
 	}
 
 }
