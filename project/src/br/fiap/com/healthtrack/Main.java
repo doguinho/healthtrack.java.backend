@@ -1,6 +1,5 @@
 package br.fiap.com.healthtrack;
 
-import java.util.Date;
 import java.util.Scanner;
 /**
  * Calculo do IMC

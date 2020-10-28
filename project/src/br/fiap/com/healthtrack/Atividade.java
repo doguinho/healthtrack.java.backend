@@ -16,9 +16,14 @@ public class Atividade {
  * @param id da Atividade
  * @param nome da Atividade
  */
-	Atividade(int id, String nome) {
+	public Atividade(int id, String nome) {
 		this.id = id;
 		this.nome = nome;
+	}
+	
+	public Atividade(String nome, double caloriasPorMinuto) {
+		this.nome = nome;
+		this.caloriasPorMinuto = caloriasPorMinuto;
 	}
 
 	public int getId() {

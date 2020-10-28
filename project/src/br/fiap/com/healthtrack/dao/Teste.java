@@ -2,6 +2,8 @@ package br.fiap.com.healthtrack.dao;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import br.fiap.com.healthtrack.Atividade;
 import br.fiap.com.healthtrack.CondicaoUsuario;
 import br.fiap.com.healthtrack.Usuario;
 
@@ -17,8 +19,22 @@ public class Teste {
 		
 		CondicaoUsuarioDao condicaoDAO = new CondicaoUsuarioDao(usuario);				
 		condicaoDAO.addCondicao(c , new Date());
-
+		
+		Atividade atividade = new Atividade("Pular amarelinha",2.0);
+		AtividadeDao atividadeDao = new AtividadeDao();
+		atividadeDao.cadastrar(atividade);
+		
+		listaPesos(usuario);		
+		listaAtividades();
+				
+		
+	}
+	
+	private static void listaPesos(Usuario usuario) {
+		
+		
 		List<CondicaoUsuario> historico = new CondicaoUsuarioDao(usuario).getAll();
+		
 		
 		System.out.println("Histórico de peso:");
 		
@@ -33,6 +49,21 @@ public class Teste {
 			
 
 		}
+		
+		
+	}
+	
+	public static void listaAtividades() {
+		
+		List<Atividade> atividades = new AtividadeDao().getAll();
+				
+		System.out.println("Lista Atividades: " + atividades.size());
+		
+		for (int i = 0; i < atividades.size(); i++) {			
+			
+			System.out.println(atividades.get(i).getNome());
+		}
+		
 		
 	}
 
