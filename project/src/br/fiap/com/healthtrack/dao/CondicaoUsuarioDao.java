@@ -1,117 +1,108 @@
 package br.fiap.com.healthtrack.dao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
+//import java.util.GregorianCalendar;
 import java.util.List;
 
 import br.fiap.com.healthtrack.*;
+import br.fiap.com.jdbc.FiapDBManager;
 
 public class CondicaoUsuarioDao {
 	
-	List<CondicaoUsuario> historico;
+	private Connection conexao = null;
+	private PreparedStatement stmt = null;	
 	
-	public CondicaoUsuarioDao() {
-		this.historico = new ArrayList<CondicaoUsuario>();
+	Usuario usuario;
+	
+	public CondicaoUsuarioDao(Usuario usuario) { 
+		this.usuario = usuario;
 	}
 	
-	public void addCondicao(CondicaoUsuario c) {
-		this.historico.add(c);
+	public void addCondicao(CondicaoUsuario c, Date data) {
+		
+		try {
+			
+			conexao = FiapDBManager.obterConexao();
+			
+			String sql = " INSERT INTO RM85401.T_CONDICAO_USUARIO (ID_USUARIO, DATA, PESO, GORDURA_CORPORAL) VALUES (?,?,?,?) ";
+			
+			stmt = conexao.prepareStatement(sql);
+			
+			stmt.setInt(1, this.usuario.getId());
+			java.sql.Date dataRegistro = new java.sql.Date(data.getTime());
+			stmt.setDate(2, dataRegistro);
+			stmt.setDouble(3, c.getPeso());
+			stmt.setDouble(4, c.getGorduraCorporal());
+						
+			stmt.executeUpdate();							
+			
+		} catch (SQLException e) {
+			System.err.println("Não foi possível conectar no Banco de Dados");
+			e.printStackTrace();
+		} finally {
+	        try {
+	            stmt.close();
+	            conexao.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	     }
+		
 	}
 	
 	public List<CondicaoUsuario> getAll() {
 		
 		/**
-		 * retorna histÃ³rico das condiÃ§Ãµes do usuÃ¡rio
+		 * retorna histórico das condições do usuário
 		 * */
 		
-		Usuario usuario = new UsuarioDao().getById(1);
-		int u = usuario.getId();
+		List<CondicaoUsuario> historico = new ArrayList<CondicaoUsuario>();
 		
-		//dia 1
+		try {
+			
+			conexao = FiapDBManager.obterConexao();
+			
+			String sql = " SELECT * FROM RM85401.T_CONDICAO_USUARIO WHERE ID_USUARIO = ? ";
+			stmt = conexao.prepareStatement(sql);
+			stmt.setInt(1, this.usuario.getId());
+			
+			ResultSet result = stmt.executeQuery();
+			
+			while (result.next()) {
+				
+				Date data = result.getDate("DATA");
+				double peso = result.getDouble("PESO");
+				double gorduraCorporal = result.getDouble("GORDURA_CORPORAL");
+				
+//				Date data = new GregorianCalendar(2020, 9, 1).getTime();		
+				
+				CondicaoUsuario condicao = new CondicaoUsuario(this.usuario);
+				condicao.setPeso(peso);
+				condicao.setGorduraCorporal(gorduraCorporal);
+				condicao.setData(data);
+				
+				historico.add(condicao);														
+				
+			}						
+			
+		} catch (SQLException e) {
+			System.err.println("Não foi possível conectar no Banco de Dados");
+			e.printStackTrace();
+		} finally {
+	        try {
+	            stmt.close();
+	            conexao.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	     }
+						
 		
-		Date data = new GregorianCalendar(2020, 9, 1).getTime();		
-		
-		CondicaoUsuario condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(90);
-		this.addCondicao(condicao);
-		
-		//dia 2
-		
-		data = new GregorianCalendar(2020, 9, 2).getTime();		
-		
-		condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(89.9);
-		this.addCondicao(condicao);
-		
-		//dia 3
-
-		data = new GregorianCalendar(2020, 9, 3).getTime();		
-		
-		condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(89.8);
-		this.addCondicao(condicao);
-
-		//dia 4
-
-		data = new GregorianCalendar(2020, 9, 4).getTime();		
-		
-		condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(89.7);
-		this.addCondicao(condicao);
-		
-		//dia 5
-
-		data = new GregorianCalendar(2020, 9, 5).getTime();		
-		
-		condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(89.6);
-		this.addCondicao(condicao);
-		
-		//dia 6
-
-		data = new GregorianCalendar(2020, 9, 6).getTime();		
-		
-		condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(89.5);
-		this.addCondicao(condicao);
-
-
-		//dia 7
-
-		data = new GregorianCalendar(2020, 9, 7).getTime();		
-		
-		condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(89.4);
-		this.addCondicao(condicao);
-
-		
-		//dia 8
-
-		data = new GregorianCalendar(2020, 9, 8).getTime();		
-		
-		condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(89.4);
-		this.addCondicao(condicao);
-		
-
-		//dia 9
-
-		data = new GregorianCalendar(2020, 9, 9).getTime();		
-		
-		condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(89.3);
-		this.addCondicao(condicao);
-		
-		//dia 10
-
-		data = new GregorianCalendar(2020, 9, 10).getTime();		
-		
-		condicao = new CondicaoUsuario(data,u);
-		condicao.setPeso(89.2);
-		this.addCondicao(condicao);
-		
-		
-		return this.historico;
+		return historico;
 	}
  
 }

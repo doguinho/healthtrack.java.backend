@@ -12,18 +12,16 @@ public class CondicaoUsuario extends Usuario {
  */	
 	private int id;
 	private Usuario usuario;
-	private double peso;
-	private double altura;
+	private double peso;	
 	private double gorduraCorporal;
 	private Date data;
 /** Construtor de Classes
  * Classe CondicaoUsuario
- * @param Id da CondiÃ§Ã£o do Usuario
+ * @param Id da Condição do Usuario
  */	
-	public CondicaoUsuario(Date data, int idUsuario) {
-		super(idUsuario);
-		this.data = data;
-//		this.usuario = usuario;
+	public CondicaoUsuario(Usuario usuario) {
+		super(usuario.getId());		
+		this.usuario = usuario;
 	}
 	
 	public Usuario getUsuario() {
@@ -46,12 +44,6 @@ public class CondicaoUsuario extends Usuario {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-	public double getAltura() {
-		return altura;
-	}
-	public void setAltura(double altura) {
-		this.altura = altura;
-	}
 	public double getGorduraCorporal() {
 		return gorduraCorporal;
 	}
@@ -65,7 +57,7 @@ public class CondicaoUsuario extends Usuario {
 		this.data = data;
 	}
 	public double getIMC() {
-		return this.peso / (this.altura * this.altura);
+		return this.peso / (this.getAltura() * this.getAltura());
 	}
 	public String resultadoIMC() {
 		

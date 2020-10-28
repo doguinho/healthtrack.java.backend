@@ -1,15 +1,26 @@
 package br.fiap.com.healthtrack.dao;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import br.fiap.com.healthtrack.CondicaoUsuario;
+import br.fiap.com.healthtrack.Usuario;
 
 public class Teste {
 
 	public static void main(String[] args) {
-
-		List<CondicaoUsuario> historico = new CondicaoUsuarioDao().getAll();
 		
-		System.out.println("HistÃ³rico de peso:");
+		Usuario usuario = new UsuarioDao().getById(4);
+		
+		CondicaoUsuario c = new CondicaoUsuario(usuario);
+		c.setPeso(60.0);
+		c.setGorduraCorporal(12.0);
+		
+		CondicaoUsuarioDao condicaoDAO = new CondicaoUsuarioDao(usuario);				
+		condicaoDAO.addCondicao(c , new Date());
+
+		List<CondicaoUsuario> historico = new CondicaoUsuarioDao(usuario).getAll();
+		
+		System.out.println("Histórico de peso:");
 		
 		for (int i = 0; i < historico.size(); i++) {
 			

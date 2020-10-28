@@ -11,6 +11,7 @@ public class Usuario extends PreferenciaUsuario {
 	private int id;
 	private String nome;
 	private String nomeUsuario;
+	private double altura;
 	
 	public Usuario(int id){
 		this.id = id;
@@ -42,6 +43,14 @@ public class Usuario extends PreferenciaUsuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public double getAltura() {
+		return this.altura;
+	}
+	
+	public void setAltura(double altura) {
+		this.altura = altura;
 	}
 
 

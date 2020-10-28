@@ -26,9 +26,10 @@ public class Main {
 		Usuario usuario = new Usuario(1);
 		usuario.setNomeUsuario(nome);
 		
-		CondicaoUsuario condicao = new CondicaoUsuario(new Date(), usuario.getId());
+		CondicaoUsuario condicao = new CondicaoUsuario(usuario);
 		condicao.setAltura(altura);
 		condicao.setPeso(peso);
+		
 /* Imprime o Resultado IMC em valor
  * 		
  */
