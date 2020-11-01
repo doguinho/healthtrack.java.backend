@@ -1,4 +1,8 @@
 package br.fiap.com.healthtrack;
+
+import java.sql.Blob;
+import java.util.Date;
+
 /**
  * Classe Usuario
  * @author Grupo 8
@@ -6,19 +10,70 @@ package br.fiap.com.healthtrack;
  */
 public class Usuario extends PreferenciaUsuario {
 /*
- * Usuario(subclasse) Ã© uma classe derivada da classe PreferenciaUsuario(superclasse)
+ * Usuario(subclasse) É uma classe derivada da classe PreferenciaUsuario(superclasse)
  */
 	private int id;
 	private String nome;
-	private String nomeUsuario;
+	private String sobrenome;
+	private String email;
+	private Date dataNascimento;
+	private char sexo;
+	private String senha;
+	private Blob foto; 
 	private double altura;
 	
-	public Usuario(int id){
-		this.id = id;
-	}
+	public Usuario() {}
 	
-	public Usuario(String nomeUsuario){
-		this.nomeUsuario = nomeUsuario;
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public char getSexo() {
+		return sexo;
+	}
+
+	/**
+	 * 
+	 * @param sexo 'M' ou 'F'
+	 */
+	public void setSexo(char sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public Blob getFoto() {
+		return foto;
+	}
+
+	public void setFoto(Blob foto) {
+		this.foto = foto;
 	}
 
 	public int getId() {
@@ -27,14 +82,6 @@ public class Usuario extends PreferenciaUsuario {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getNomeUsuario() {
-		return nomeUsuario;
-	}
-
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
 	}
 
 	public String getNome() {

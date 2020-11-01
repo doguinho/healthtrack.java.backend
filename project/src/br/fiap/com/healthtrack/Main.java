@@ -22,8 +22,8 @@ public class Main {
 		System.out.print("Insira sua altura(m) Ex: 1,67 = ");
 		double altura = sc.nextDouble();
 		
-		Usuario usuario = new Usuario(1);
-		usuario.setNomeUsuario(nome);
+		Usuario usuario = new Usuario();
+		
 		
 		CondicaoUsuario condicao = new CondicaoUsuario(usuario);
 		condicao.setAltura(altura);

@@ -20,7 +20,7 @@ public class CondicaoUsuario extends Usuario {
  * @param Id da Condição do Usuario
  */	
 	public CondicaoUsuario(Usuario usuario) {
-		super(usuario.getId());		
+		super();		
 		this.usuario = usuario;
 	}
 	
